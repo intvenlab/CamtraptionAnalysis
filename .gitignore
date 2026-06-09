@@ -1,0 +1,61 @@
+# Build outputs
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+[Ll]og/
+[Ll]ogs/
+publish/
+TestResults/
+
+# Visual Studio / Rider
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# NuGet
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# .NET tooling
+*.DotSettings.user
+*.cache
+*.log
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Installer output and redistributables (Inno Setup)
+installer/output/
+installer/redist/
+windowsdesktop-runtime-*.exe
+*.runtime*.exe
+
+# Local test / capture data
+testdata/
+test-data/
+samples/
+captures/
+
+# Analysis report output saved in-repo
+reports/
+
+# Personal / machine-specific
+cursor_notes.txt
+.env
+.env.*
+*.env.local
+secrets/
+credentials.json
+*.pfx

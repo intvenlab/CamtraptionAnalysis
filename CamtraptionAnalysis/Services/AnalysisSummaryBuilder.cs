@@ -46,7 +46,7 @@ public static class AnalysisSummaryBuilder
             InferredMismatches = readable.Count(o => o.ScheduleMatch == "MISMATCH"),
             LoggedScheduleMismatches = readable.Count(o => o.LoggedScheduleMatch == "MISMATCH"),
             LoggedInferredMismatches = readable.Count(o => o.LoggedInferredMatch == "MISMATCH"),
-            CopyrightParseFailures = 0,
+            CopyrightParseFailures = ordered.Count(o => o.IsReadable && !o.CopyrightParsed.IsParsed),
             TimelineEventCount = eventRows.Count,
             TimelineErrorCount = eventRows.Count(e => e.Event?.Severity == AnalysisEventSeverity.Error),
             TimelineWarningCount = eventRows.Count(e => e.Event?.Severity == AnalysisEventSeverity.Warning),

@@ -1,6 +1,6 @@
 # CamtraptionAnalysis
 
-Windows desktop tool for offline analysis of Camtraption camera capture folders. Reads EXIF and Canon maker-note metadata from JPG/JPEG files, infers camera modes (C1/C2/C3), checks schedule alignment, and builds a capture timeline with transitions, wake cycles, and firmware error events.
+Windows desktop tool for offline analysis of Camtraption camera capture folders. Reads EXIF and Canon maker-note metadata from JPG/JPEG files (optionally CR2/CR3/ARW raw), infers camera modes (C1/C2/C3), checks schedule alignment, and builds a capture timeline with transitions, wake cycles, and firmware error events.
 
 Report output is compatible with the Python tool in `camtraption_agent/analysis/detect_camera_modes.py`.
 
@@ -35,7 +35,8 @@ dotnet publish CamtraptionAnalysis\CamtraptionAnalysis.csproj -c Release -r win-
 3. **Summary panel** — root path, file counts, camera serial, schedule artist, mismatch totals, and saved report path.
 4. **Capture timeline** — sortable grid of event rows and capture rows. Row highlighting indicates transitions, wake cycles, mode changes, notes, warnings, and errors.
 5. **Show issues only** — filter the grid to notable rows (mismatches, events, read errors).
-6. **Open Reports Folder** — opens the folder where text reports are saved.
+6. **Also process raw files** — when checked, also discovers `.cr2`, `.cr3`, and `.arw` files (default off).
+7. **Open Reports Folder** — opens the folder where text reports are saved.
 
 Each run writes a full text report to:
 

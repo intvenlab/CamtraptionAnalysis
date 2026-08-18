@@ -9,7 +9,7 @@ public static class ObservationOrdering
 
     public static IEnumerable<ImageObservation> SelectIncludedInReport(
         IEnumerable<ImageObservation> observations) =>
-        observations.Where(o => o.IsAnalyzable || !o.IsReadable);
+        observations;
 
     public static IReadOnlyList<ImageObservation> SortBySerialThenCaptureTime(
         IEnumerable<ImageObservation> observations) =>

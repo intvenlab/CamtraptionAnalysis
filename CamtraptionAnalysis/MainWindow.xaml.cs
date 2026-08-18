@@ -60,11 +60,13 @@ public partial class MainWindow : Window
 
         try
         {
+            var includeRawFiles = IncludeRawFilesCheckBox.IsChecked == true;
             var result = await _pipeline.RunAsync(
                 rootPath,
                 maxFiles: null,
                 progress,
-                _runCancellation.Token).ConfigureAwait(true);
+                _runCancellation.Token,
+                includeRawFiles).ConfigureAwait(true);
 
             var reportPath = ReportFileWriter.SaveReport(result.ReportText);
             ApplyResults(result.Summary, result.Timeline, reportPath);
@@ -168,7 +170,9 @@ public partial class MainWindow : Window
         {
             ProgressBar.IsIndeterminate = true;
             ProgressBar.Value = 0;
-            StatusTextBlock.Text = "Scanning for JPG/JPEG files...";
+            StatusTextBlock.Text = IncludeRawFilesCheckBox.IsChecked == true
+                ? "Scanning for JPG/JPEG and raw files..."
+                : "Scanning for JPG/JPEG files...";
             return;
         }
 
@@ -196,5 +200,6 @@ public partial class MainWindow : Window
         BrowseButton.IsEnabled = !isRunning;
         RunButton.IsEnabled = !isRunning && Directory.Exists(FolderPathTextBox.Text.Trim());
         ShowMismatchesOnlyCheckBox.IsEnabled = !isRunning && _currentTimeline.Count > 0;
+        IncludeRawFilesCheckBox.IsEnabled = !isRunning;
     }
 }

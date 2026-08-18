@@ -41,7 +41,7 @@ public sealed class ImageObservation
 
     public bool HasCopyrightField => !string.IsNullOrWhiteSpace(CopyrightText);
 
-    public bool IsAnalyzable => IsReadable && CopyrightParsed.IsParsed;
+    public bool IsAnalyzable => IsReadable;
 
     public string ExpectedModeDisplay =>
         ScheduleMatch == "MISMATCH" && ExpectedMode is not "" and not "UNKNOWN"

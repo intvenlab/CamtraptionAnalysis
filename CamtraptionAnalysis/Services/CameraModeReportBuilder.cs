@@ -37,7 +37,7 @@ public static class CameraModeReportBuilder
         var inferredMismatches = readable.Count(o => o.ScheduleMatch == "MISMATCH");
         var loggedScheduleMismatches = readable.Count(o => o.LoggedScheduleMatch == "MISMATCH");
         var loggedInferredMismatches = readable.Count(o => o.LoggedInferredMatch == "MISMATCH");
-        var copyrightParseFailures = 0;
+        var copyrightParseFailures = ordered.Count(o => o.IsReadable && !o.CopyrightParsed.IsParsed);
         var eventRows = timeline.Where(e => e.IsEventRow).ToList();
 
         var builder = new StringBuilder();

@@ -21,7 +21,8 @@ public sealed class AnalysisPipeline
         string rootPath,
         int? maxFiles,
         IProgress<AnalysisPipelineProgress>? progress = null,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default,
+        bool includeRawFiles = false)
     {
         if (string.IsNullOrWhiteSpace(rootPath))
         {
@@ -66,6 +67,7 @@ public sealed class AnalysisPipeline
             () => DiscoverFiles(
                 rootPath,
                 maxFiles,
+                includeRawFiles,
                 channel.Writer,
                 ref filesDiscovered,
                 () => Report(),
@@ -124,6 +126,7 @@ public sealed class AnalysisPipeline
     private static void DiscoverFiles(
         string rootPath,
         int? maxFiles,
+        bool includeRawFiles,
         ChannelWriter<string> writer,
         ref int filesDiscovered,
         Action reportDiscovered,
@@ -131,7 +134,7 @@ public sealed class AnalysisPipeline
     {
         try
         {
-            foreach (var filePath in JpegFileEnumerator.EnumerateStreaming(rootPath))
+            foreach (var filePath in JpegFileEnumerator.EnumerateStreaming(rootPath, includeRawFiles))
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
